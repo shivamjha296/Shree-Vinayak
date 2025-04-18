@@ -1,6 +1,6 @@
 [build]
   base = "."
-  command = "cd project && npm run build"
+  command = "cd project && npm install && npm run build"
   publish = "project/dist"
 
 # For single page applications routing
