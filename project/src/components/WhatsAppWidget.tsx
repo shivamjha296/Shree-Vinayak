@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function WhatsAppWidget() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const phoneNumber = '+919999999999'; // Replace with actual number
+  const phoneNumber = '+919076699515'; // Updated to the requested number
 
   return (
     <div className="fixed bottom-8 right-8 z-50">
