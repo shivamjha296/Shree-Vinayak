@@ -12,6 +12,7 @@ import WhatsAppWidget from './components/WhatsAppWidget';
 
 function AppContent() {
   const location = useLocation();
+  const nodeRef = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -20,24 +21,15 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <SwitchTransition>
-        <CSSTransition
-          key={location.pathname}
-          timeout={300}
-          classNames="page"
-          unmountOnExit
-        >
-          <main className="pt-20">
-            <Routes location={location}>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/gallery" element={<Gallery />} />
-            </Routes>
-          </main>
-        </CSSTransition>
-      </SwitchTransition>
+      <main className="pt-20">
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/gallery" element={<Gallery />} />
+        </Routes>
+      </main>
       <WhatsAppWidget />
       <Footer />
     </div>
