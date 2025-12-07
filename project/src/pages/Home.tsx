@@ -34,37 +34,37 @@ export default function Home() {
     <div className="relative">
       {/* Hero Section */}
       <div className="relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Text Content */}
-            <div className="text-gray-900">
+            <div className="text-gray-900 text-center lg:text-left order-2 lg:order-1">
               <motion.h1 
                 {...fadeIn}
-                className="text-5xl sm:text-6xl md:text-7xl font-serif font-bold leading-tight text-primary-900"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold leading-tight text-primary-900"
               >
                 Luxury Velvet & Premium Fabrics
               </motion.h1>
               <motion.p 
                 {...fadeIn}
                 transition={{ delay: 0.2 }}
-                className="mt-6 text-xl sm:text-2xl text-gray-700"
+                className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700"
               >
-                Your premier destination for premium velvet, velvo, fulldul, supersoft, and festive fabrics. Wholesale & retail available.
+                Your premier destination for premium velvet, Velboa, Full Dull, supersoft, and festive fabrics. Wholesale & retail available.
               </motion.p>
               <motion.div 
                 {...fadeIn}
                 transition={{ delay: 0.4 }}
-                className="mt-10 flex flex-wrap gap-4"
+                className="mt-6 sm:mt-8 lg:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
               >
                 <Link
                   to="/products"
-                  className="bg-primary-500 text-white px-8 py-4 rounded-lg hover:bg-primary-600 transition-colors transform hover:scale-105 duration-200 shadow-lg"
+                  className="bg-primary-500 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg hover:bg-primary-600 transition-colors transform hover:scale-105 duration-200 shadow-lg w-full sm:w-auto text-center"
                 >
                   View Fabric Collection
                 </Link>
                 <Link
                   to="/contact"
-                  className="bg-primary-900 text-white px-8 py-4 rounded-lg hover:bg-primary-800 transition-colors transform hover:scale-105 duration-200 shadow-lg"
+                  className="bg-primary-900 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg hover:bg-primary-800 transition-colors transform hover:scale-105 duration-200 shadow-lg w-full sm:w-auto text-center"
                 >
                   Get Wholesale Prices
                 </Link>
@@ -72,7 +72,7 @@ export default function Home() {
             </div>
 
             {/* Right Side - Image Carousel */}
-            <div className="relative h-[400px] lg:h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] rounded-2xl overflow-hidden shadow-2xl group order-1 lg:order-2">
               <AnimatePresence initial={false}>
                 <motion.img
                   key={currentImageIndex}
@@ -87,14 +87,14 @@ export default function Home() {
               </AnimatePresence>
               
               {/* Carousel Indicators */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+              <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex gap-1.5 sm:gap-2 z-10">
                 {carouselImages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                       index === currentImageIndex 
-                        ? 'bg-white w-8' 
+                        ? 'bg-white w-6 sm:w-8' 
                         : 'bg-white/50 hover:bg-white/75'
                     }`}
                     aria-label={`Go to image ${index + 1}`}
@@ -105,19 +105,19 @@ export default function Home() {
               {/* Navigation Arrows */}
               <button
                 onClick={() => setCurrentImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full transition-all duration-300 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-2 sm:p-3 rounded-full transition-all duration-300 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
                 aria-label="Previous image"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               <button
                 onClick={() => setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length)}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full transition-all duration-300 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-2 sm:p-3 rounded-full transition-all duration-300 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
                 aria-label="Next image"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -272,14 +272,14 @@ const fabricCategories = [
     image: '/images/luxuryvelvet.png'
   },
   {
-    name: 'Velvo Collection',
-    description: 'Soft and durable velvo fabrics ideal for home décor and garments',
-    image: '/images/velvocollection.png'
+    name: 'Velboa Collection',
+    description: 'Soft and durable Velboa fabrics ideal for home décor and garments',
+    image: '/images/velboacollection.png'
   },
   {
-    name: 'Fulldul Series',
-    description: 'High-quality fulldul fabrics with elegant sheen and texture',
-    image: '/images/fulldulseries.png'
+    name: 'Full Dull Series',
+    description: 'High-quality Full Dull fabrics with elegant sheen and texture',
+    image: '/images/fulldullseries.png'
   },
   {
     name: 'Supersoft Fabrics',
@@ -311,7 +311,7 @@ const features = [
   },
   {
     title: 'Extensive Collection',
-    description: 'Wide range of velvet, velvo, fulldul, and festive fabrics in various colors.',
+    description: 'Wide range of velvet, Velboa, Full Dull, and festive fabrics in various colors.',
     icon: <FaLeaf className="w-6 h-6" />,
   },
 ];
@@ -324,7 +324,7 @@ const testimonials = [
     location: 'Mumbai, Maharashtra',
   },
   {
-    content: 'Best wholesale supplier in Surat! The Fulldul and velvo collection is always in demand at our store. Quick delivery and professional service. Very satisfied with their business approach.',
+    content: 'Best wholesale supplier in Surat! The Full Dull and Velboa collection is always in demand at our store. Quick delivery and professional service. Very satisfied with their business approach.',
     author: 'Priya Sharma',
     title: 'Proprietor, Sharma Textiles',
     location: 'Surat, Gujarat',
@@ -348,7 +348,7 @@ const testimonials = [
     location: 'Delhi NCR',
   },
   {
-    content: 'We have tried many suppliers but Shree Vinayak stands out for their quality and pricing. The velvet and velvo fabrics are top-notch. Perfect for upholstery work.',
+    content: 'We have tried many suppliers but Shree Vinayak stands out for their quality and pricing. The velvet and Velboa fabrics are top-notch. Perfect for upholstery work.',
     author: 'Kavita Reddy',
     title: 'Interior Designer',
     location: 'Bangalore, Karnataka',

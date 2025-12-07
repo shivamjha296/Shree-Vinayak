@@ -69,26 +69,26 @@ export default function Contact() {
   return (
     <div className="py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
             Contact Us
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Get in touch with us for any inquiries about our products or to request
             wholesale pricing information.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Contact Information */}
-          <div className="bg-white rounded-lg shadow-md p-8 border border-gray-200 flex flex-col">
-            <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 sm:mb-6">
               Contact Information
             </h2>
-            <div className="space-y-6 flex-grow">
+            <div className="space-y-4 sm:space-y-6 flex-grow">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Address</h3>
-                <p className="text-gray-600 text-base leading-relaxed">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Address</h3>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                   Bhimwadi Rahiwasi Sangh, Lal Dongar Rd,<br />
                   near Sindhi Society, Suman Nagar,<br />
                   Chembur, Mumbai, Maharashtra 400071<br />
@@ -96,18 +96,18 @@ export default function Contact() {
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600 text-base">+91 9076699515</p>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Phone</h3>
+                <p className="text-gray-600 text-sm sm:text-base">+91 9076699515</p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
-                <p className="text-gray-600 text-base">shreevinayak515@gmail.com</p>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Email</h3>
+                <p className="text-gray-600 text-sm sm:text-base">shreevinayak515@gmail.com</p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
                   Business Hours
                 </h3>
-                <p className="text-gray-600 text-base leading-relaxed">
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                   Monday: 10:00 AM - 7:00 PM<br />
                   Tuesday: 10:00 AM - 7:00 PM<br />
                   Wednesday: 10:00 AM - 7:00 PM<br />
@@ -122,8 +122,8 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-lg shadow-md p-8 border border-gray-200 flex flex-col">
-            <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8 border border-gray-200 flex flex-col">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 sm:mb-6">
               Send us a Message
             </h2>
             
@@ -143,17 +143,17 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 flex-grow flex flex-col">
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 flex-grow flex flex-col">
                 <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
                 <input type="hidden" name="subject" value="New Contact Message - Shree Vinayak" />
                 {error && (
-                  <div className="bg-red-50 border border-red-200 rounded-md p-4">
-                    <p className="text-red-600">{error}</p>
+                  <div className="bg-red-50 border border-red-200 rounded-md p-3 sm:p-4">
+                    <p className="text-red-600 text-sm sm:text-base">{error}</p>
                   </div>
                 )}
                 
                 <div>
-                  <label className="block text-base font-medium text-gray-700 mb-2">
+                  <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1.5 sm:mb-2">
                     Name
                   </label>
                   <input
@@ -162,11 +162,11 @@ export default function Contact() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-base font-medium text-gray-700 mb-2">
+                  <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1.5 sm:mb-2">
                     Email
                   </label>
                   <input
@@ -175,11 +175,11 @@ export default function Contact() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-base font-medium text-gray-700 mb-2">
+                  <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1.5 sm:mb-2">
                     Phone
                   </label>
                   <input
@@ -188,11 +188,11 @@ export default function Contact() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                   />
                 </div>
                 <div className="flex-grow flex flex-col">
-                  <label className="block text-base font-medium text-gray-700 mb-2">
+                  <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1.5 sm:mb-2">
                     Message
                   </label>
                   <textarea
@@ -201,13 +201,13 @@ export default function Contact() {
                     rows={3}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500 flex-grow"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500 flex-grow"
                   ></textarea>
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`mt-auto text-white px-8 py-3 text-lg rounded-lg transition-colors w-full font-semibold ${
+                  className={`mt-auto text-white px-6 py-2.5 sm:px-8 sm:py-3 text-base sm:text-lg rounded-lg transition-colors w-full font-semibold ${
                     isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-500 hover:bg-primary-600'
                   }`}
                 >
@@ -230,7 +230,7 @@ export default function Contact() {
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
               title="Shree Vinayak Location"
-              className="w-full"
+              className="w-full h-64 sm:h-80 md:h-96 lg:h-[400px]"
             ></iframe>
           </div>
         </div>

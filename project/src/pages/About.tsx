@@ -3,7 +3,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 const features = [
   {
     title: 'Extensive Fabric Collection',
-    description: 'Wide range of premium velvet, velvo, fulldul, and supersoft fabrics in diverse colors and textures.'
+    description: 'Wide range of premium velvet, Velboa, full dull, and supersoft fabrics in diverse colors and textures.'
   },
   {
     title: 'Uncompromising Quality',
@@ -43,47 +43,47 @@ export default function About() {
     <div className="py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
             About Shree Vinayak
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Leading wholesale supplier of premium velvet and specialty fabrics since 2010. 
             Serving retailers and manufacturers across India with quality and competitive pricing.
           </p>
         </div>
 
         {/* Mission Statement */}
-        <div className="bg-primary-50 rounded-lg p-8 mb-12">
-          <h2 className="text-2xl font-serif font-bold text-primary-900 mb-4 text-center">
+        <div className="bg-primary-50 rounded-lg p-4 sm:p-6 md:p-8 mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-primary-900 mb-3 sm:mb-4 text-center">
             Our Mission
           </h2>
-          <p className="text-base text-primary-800 text-center max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-primary-800 text-center max-w-3xl mx-auto">
             To be India's trusted wholesale fabric supplier by delivering premium quality fabrics 
             at competitive prices with exceptional service and long-term partnerships.
           </p>
         </div>
 
         {/* Company History */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 text-center">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-6 sm:mb-8 text-center">
             Our Journey
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Timeline and Features Combined */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {milestones.map((milestone, index) => (
                 <div
                   key={index}
                   className="flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-6"
                 >
-                  <div className="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-bold text-primary-900">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-base sm:text-lg font-bold text-primary-900">
                       {milestone.year}
                     </span>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
                       {milestone.title}
                     </h3>
                     <p className="text-gray-600 text-sm">{milestone.description}</p>
@@ -92,15 +92,15 @@ export default function About() {
               ))}
               
               {/* Features below timeline */}
-              <div className="space-y-6 mt-8">
+              <div className="space-y-4 sm:space-y-6 mt-6 sm:mt-8">
                 {features.map((feature, index) => (
                   <div
                     key={index}
-                    className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex items-start space-x-4"
+                    className="bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex items-start space-x-3 sm:space-x-4"
                   >
-                    <FaCheckCircle className="text-primary-500 text-xl flex-shrink-0 mt-1" />
+                    <FaCheckCircle className="text-primary-500 text-lg sm:text-xl flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
                         {feature.title}
                       </h3>
                       <p className="text-gray-600 text-sm">{feature.description}</p>
@@ -122,35 +122,35 @@ export default function About() {
         </div>
 
         {/* Values Section */}
-        <div className="bg-gradient-to-br from-primary-50 to-white rounded-lg p-8 shadow-md border border-primary-100">
-          <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 text-center">
+        <div className="bg-gradient-to-br from-primary-50 to-white rounded-lg p-4 sm:p-6 md:p-8 shadow-md border border-primary-100">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-6 sm:mb-8 text-center">
             Our Core Values
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg p-6 shadow hover:shadow-lg transition-shadow border border-gray-100">
-              <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FaCheckCircle className="text-primary-600 text-xl" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow hover:shadow-lg transition-shadow border border-gray-100">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <FaCheckCircle className="text-primary-600 text-lg sm:text-xl" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 text-center">Quality First</h3>
-              <p className="text-gray-600 text-sm text-center">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 text-center">Quality First</h3>
+              <p className="text-gray-600 text-xs sm:text-sm text-center">
                 Every fabric is meticulously sourced and inspected to meet the highest quality standards.
               </p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow hover:shadow-lg transition-shadow border border-gray-100">
-              <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FaCheckCircle className="text-primary-600 text-xl" />
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow hover:shadow-lg transition-shadow border border-gray-100">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <FaCheckCircle className="text-primary-600 text-lg sm:text-xl" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 text-center">Customer Success</h3>
-              <p className="text-gray-600 text-sm text-center">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 text-center">Customer Success</h3>
+              <p className="text-gray-600 text-xs sm:text-sm text-center">
                 Expert guidance, reliable inventory, and prompt service to help your business thrive.
               </p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow hover:shadow-lg transition-shadow border border-gray-100">
-              <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FaCheckCircle className="text-primary-600 text-xl" />
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow hover:shadow-lg transition-shadow border border-gray-100">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <FaCheckCircle className="text-primary-600 text-lg sm:text-xl" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2 text-center">Trust & Integrity</h3>
-              <p className="text-gray-600 text-sm text-center">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 text-center">Trust & Integrity</h3>
+              <p className="text-gray-600 text-xs sm:text-sm text-center">
                 Building long-term relationships through transparent practices and honest pricing.
               </p>
             </div>
