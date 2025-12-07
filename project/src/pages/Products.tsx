@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-
 type FabricType = {
   id: string;
   name: string;
@@ -15,76 +12,132 @@ const fabricTypes: FabricType[] = [
   {
     id: 'velvet',
     name: 'Premium Velvet',
-    description: 'Luxurious velvet fabric with deep, rich colors and superior quality. Our velvet collection features both plain and textured options, perfect for upholstery and high-end fashion.',
-    image: '/images/velvet-fabric.jpg',
+    description: 'Luxurious velvet fabric with deep, rich colors and superior quality. Features both plain and textured options, perfect for upholstery and high-end fashion.',
+    image: '/images/luxuryvelvet.png',
     uses: ['Upholstery', 'Fashion Garments', 'Home Décor', 'Drapery'],
-    colors: ['Royal Blue', 'Deep Red', 'Emerald Green', 'Gold', 'Purple', 'Black', 'Silver'],
-    minOrder: '50 meters'
+    colors: ['Royal Blue', 'Deep Red', 'Emerald Green', 'Gold', 'Purple', 'Black', 'Silver']
   },
   {
     id: 'velvo',
     name: 'Velvo Collection',
-    description: 'Our signature Velvo fabric combines the luxurious feel of velvet with enhanced durability. Perfect for both commercial and residential applications.',
-    image: '/images/velvo-fabric.jpg',
+    description: 'Signature Velvo fabric blends the luxurious feel of velvet with enhanced durability. Perfect for commercial and residential applications.',
+    image: '/images/velvocollection.png',
     uses: ['Commercial Furniture', 'Residential Upholstery', 'Cushions', 'Wall Panels'],
-    colors: ['Midnight Blue', 'Burgundy', 'Forest Green', 'Champagne', 'Charcoal'],
-    minOrder: '100 meters'
+    colors: ['Midnight Blue', 'Burgundy', 'Forest Green', 'Champagne', 'Charcoal']
   },
   {
     id: 'fulldul',
     name: 'Fulldul Series',
-    description: 'Premium Fulldul fabric with a distinctive sheen and sophisticated texture. Ideal for creating elegant interiors and fashion pieces.',
-    image: '/images/fulldul-fabric.jpg',
+    description: 'Premium Fulldul fabric with a distinctive sheen and sophisticated texture. Ideal for creating elegant interiors and luxurious fashion pieces.',
+    image: '/images/fulldulseries.png',
     uses: ['Luxury Furniture', 'High-end Fashion', 'Interior Decoration', 'Boutique Items'],
-    colors: ['Pearl White', 'Rose Gold', 'Sapphire Blue', 'Bronze', 'Platinum'],
-    minOrder: '75 meters'
+    colors: ['Pearl White', 'Rose Gold', 'Sapphire Blue', 'Bronze', 'Platinum']
   },
   {
     id: 'supersoft',
     name: 'Supersoft Fabrics',
     description: 'Ultra-comfortable Supersoft fabric that combines luxury with practicality. Perfect for clothing and soft furnishings.',
-    image: '/images/supersoft-fabric.jpg',
+    image: '/images/super-soft-fabric.jpg',
     uses: ['Casual Wear', 'Bedding', 'Soft Furnishings', 'Children\'s Clothing'],
-    colors: ['Sky Blue', 'Soft Pink', 'Mint Green', 'Lavender', 'Beige'],
-    minOrder: '50 meters'
+    colors: ['Sky Blue', 'Soft Pink', 'Mint Green', 'Lavender', 'Beige']
   },
   {
     id: 'santa',
     name: 'Xmas Santa Collection',
     description: 'Specialized fabric perfect for festive season products. Features rich textures and colors ideal for Christmas decorations and costumes.',
-    image: '/images/santa-fabric.jpg',
+    image: '/images/festivecollection.png',
     uses: ['Santa Costumes', 'Christmas Decorations', 'Festive Accessories', 'Holiday Display'],
-    colors: ['Classic Red', 'Snow White', 'Forest Green', 'Gold Trim'],
-    minOrder: '25 meters'
+    colors: ['Classic Red', 'Snow White', 'Forest Green', 'Gold Trim']
   },
   {
     id: 'designer',
     name: 'Designer Prints',
     description: 'Custom-designed printed fabrics on premium base materials. Available in various patterns and color combinations.',
-    image: '/images/designer-fabric.jpg',
+    image: '/images/designerprints.jpeg',
     uses: ['Fashion Collections', 'Home Décor', 'Custom Projects', 'Seasonal Collections'],
-    colors: ['Custom Patterns', 'Seasonal Designs', 'Bespoke Prints'],
-    minOrder: '100 meters'
+    colors: ['Custom Patterns', 'Seasonal Designs', 'Bespoke Prints']
   }
 ];
 
-type InquiryForm = {
-  name: string;
+import { useState } from 'react';
+
+type InquiryFormData = {
+  company_name: string;
   email: string;
   phone: string;
-  fabricType: string;
+  fabric_type: string;
   quantity: string;
   message: string;
 };
 
 export default function Products() {
-  const [selectedFabric, setSelectedFabric] = useState<FabricType | null>(null);
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<InquiryForm>();
+  const [formData, setFormData] = useState<InquiryFormData>({
+    company_name: '',
+    email: '',
+    phone: '',
+    fabric_type: '',
+    quantity: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const onSubmit = (data: InquiryForm) => {
-    console.log(data);
-    reset();
-    alert('Thank you for your inquiry. Our team will contact you shortly with pricing and availability information.');
+  const scrollToForm = () => {
+    const formElement = document.getElementById('inquiry-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+    
+    const form = e.currentTarget;
+    const formDataToSend = new FormData(form);
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        
+        setFormData({
+          company_name: '',
+          email: '',
+          phone: '',
+          fabric_type: '',
+          quantity: '',
+          message: ''
+        });
+
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error(data.message || 'Form submission failed');
+      }
+    } catch (err) {
+      console.error('Failed to send inquiry:', err);
+      setIsSubmitting(false);
+      setError('Failed to submit the form. Please try again later.');
+    }
   };
 
   return (
@@ -113,15 +166,10 @@ export default function Products() {
                   alt={fabric.name}
                   className="w-full h-64 object-cover"
                 />
-                {fabric.minOrder && (
-                  <div className="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-sm">
-                    Min. Order: {fabric.minOrder}
-                  </div>
-                )}
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{fabric.name}</h3>
-                <p className="text-gray-600 mb-4">{fabric.description}</p>
+                <p className="text-gray-600 mb-4 text-justify">{fabric.description}</p>
                 <div className="mb-4">
                   <h4 className="font-semibold text-gray-900 mb-2">Available Colors:</h4>
                   <div className="flex flex-wrap gap-2">
@@ -141,10 +189,10 @@ export default function Products() {
                   </ul>
                 </div>
                 <button
-                  onClick={() => setSelectedFabric(fabric)}
+                  onClick={scrollToForm}
                   className="bg-primary-500 text-white px-6 py-3 rounded-lg hover:bg-primary-600 transition-colors w-full"
                 >
-                  Request Quote
+                  Get Quote
                 </button>
               </div>
             </div>
@@ -152,105 +200,136 @@ export default function Products() {
         </div>
 
         {/* Inquiry Form */}
-        <div className="bg-gray-50 rounded-lg p-8">
-          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-8 text-center">
+        <div id="inquiry-form" className="bg-gray-50 rounded-lg p-6 md:p-8 border-2 border-black shadow-xl max-w-4xl mx-auto">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 text-center">
             Wholesale Inquiry Form
           </h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Company Name
-                </label>
-                <input
-                  type="text"
-                  {...register('name', { required: true })}
-                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                />
-                {errors.name && (
-                  <span className="text-red-500 text-sm">Company name is required</span>
-                )}
+          
+          {isSubmitted ? (
+            <div className="bg-green-50 border border-green-200 rounded-md p-8 text-center">
+              <div className="flex items-center justify-center mb-6">
+                <svg className="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Contact Email
-                </label>
-                <input
-                  type="email"
-                  {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
-                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                />
-                {errors.email && (
-                  <span className="text-red-500 text-sm">Valid email is required</span>
-                )}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  {...register('phone', { required: true })}
-                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                />
-                {errors.phone && (
-                  <span className="text-red-500 text-sm">Phone number is required</span>
-                )}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Fabric Type
-                </label>
-                <select
-                  {...register('fabricType', { required: true })}
-                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                >
-                  <option value="">Select a fabric type</option>
-                  {fabricTypes.map((fabric) => (
-                    <option key={fabric.id} value={fabric.id}>
-                      {fabric.name}
-                    </option>
-                  ))}
-                </select>
-                {errors.fabricType && (
-                  <span className="text-red-500 text-sm">Please select a fabric type</span>
-                )}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Required Quantity (meters)
-                </label>
-                <input
-                  type="text"
-                  {...register('quantity', { required: true })}
-                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                  placeholder="Minimum order quantities apply"
-                />
-                {errors.quantity && (
-                  <span className="text-red-500 text-sm">Quantity is required</span>
-                )}
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Additional Requirements
-                </label>
-                <textarea
-                  {...register('message')}
-                  rows={4}
-                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-                  placeholder="Please specify any special requirements, color preferences, or delivery timeline"
-                ></textarea>
-              </div>
-              <div className="md:col-span-2">
-                <button 
-                  type="submit" 
-                  className="bg-primary-500 text-white px-8 py-4 rounded-lg hover:bg-primary-600 transition-colors w-full font-semibold"
-                >
-                  Submit Wholesale Inquiry
-                </button>
-              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Thank You!</h3>
+              <p className="text-green-700 font-medium text-lg mb-2">
+                Your wholesale inquiry has been submitted successfully.
+              </p>
+              <p className="text-gray-600">
+                Our team will contact you shortly with pricing and availability information.
+              </p>
             </div>
-          </form>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
+              <input type="hidden" name="subject" value="New Wholesale Inquiry - Shree Vinayak" />
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
+                  <p className="text-red-600">{error}</p>
+                </div>
+              )}
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-base font-medium text-gray-700 mb-2">
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    name="company_name"
+                    required
+                    value={formData.company_name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-base font-medium text-gray-700 mb-2">
+                    Contact Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-base font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-base font-medium text-gray-700 mb-2">
+                    Fabric Type
+                  </label>
+                  <select
+                    name="fabric_type"
+                    required
+                    value={formData.fabric_type}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                  >
+                    <option value="">Select a fabric type</option>
+                    {fabricTypes.map((fabric) => (
+                      <option key={fabric.id} value={fabric.name}>
+                        {fabric.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-base font-medium text-gray-700 mb-2">
+                    Required Quantity (meters)
+                  </label>
+                  <input
+                    type="text"
+                    name="quantity"
+                    required
+                    value={formData.quantity}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    placeholder="Minimum order quantities apply"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-base font-medium text-gray-700 mb-2">
+                    Additional Requirements
+                  </label>
+                  <textarea
+                    name="message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 text-base rounded-md border-2 border-gray-400 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    placeholder="Please specify any special requirements, color preferences, or delivery timeline"
+                  ></textarea>
+                </div>
+                <div className="md:col-span-2">
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`text-white px-8 py-4 text-lg rounded-lg transition-colors w-full font-semibold shadow-lg ${
+                      isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-500 hover:bg-primary-600'
+                    }`}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit Wholesale Inquiry'}
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
         </div>
       </div>
     </div>
