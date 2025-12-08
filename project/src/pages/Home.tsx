@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLeaf, FaGem, FaBoxOpen, FaTruck, FaUsers, FaHandshake } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -32,26 +33,35 @@ export default function Home() {
 
   return (
     <div className="relative">
+      <Helmet>
+        <title>Mumbai's Velvet Wholesaler - Shree Vinayak</title>
+        <meta name="description" content="Premier wholesale supplier of Micro Velvet, Velboa, and fancy fabrics in Chembur, Mumbai. Direct factory rates for retailers and designers." />
+      </Helmet>
       {/* Hero Section */}
       <div className="relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Text Content */}
             <div className="text-gray-900 text-center lg:text-left order-2 lg:order-1">
-              <motion.h1 
+              <motion.h1
                 {...fadeIn}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold leading-tight text-primary-900"
               >
-                Luxury Velvet & Premium Fabrics
+                <span className="block sm:hidden">
+                  Mumbai's Velvet & Fabric <br /> Wholesaler
+                </span>
+                <span className="hidden sm:block">
+                  Mumbai's <br /> Velvet & Fabric <br /> Wholesaler
+                </span>
               </motion.h1>
-              <motion.p 
+              <motion.p
                 {...fadeIn}
                 transition={{ delay: 0.2 }}
-                className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700"
+                className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 text-justify"
               >
-                Your premier destination for premium velvet, Velboa, Full Dull, supersoft, and festive fabrics. Wholesale & retail available.
+                The finest collection of Micro Velvet, Velboa, and Fancy Fabrics in Chembur. Direct wholesale rates for retailers and designers.
               </motion.p>
-              <motion.div 
+              <motion.div
                 {...fadeIn}
                 transition={{ delay: 0.4 }}
                 className="mt-6 sm:mt-8 lg:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
@@ -85,18 +95,17 @@ export default function Home() {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>
-              
+
               {/* Carousel Indicators */}
               <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex gap-1.5 sm:gap-2 z-10">
                 {carouselImages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex 
-                        ? 'bg-white w-6 sm:w-8' 
-                        : 'bg-white/50 hover:bg-white/75'
-                    }`}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${index === currentImageIndex
+                      ? 'bg-white w-6 sm:w-8'
+                      : 'bg-white/50 hover:bg-white/75'
+                      }`}
                     aria-label={`Go to image ${index + 1}`}
                   />
                 ))}
@@ -127,9 +136,9 @@ export default function Home() {
       </div>
 
       {/* Featured Fabrics Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -148,8 +157,8 @@ export default function Home() {
                 className="group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-xl">
-                  <img 
-                    src={category.image} 
+                  <img
+                    src={category.image}
                     alt={category.name}
                     className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
@@ -169,7 +178,7 @@ export default function Home() {
       {/* Features Section */}
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -179,7 +188,7 @@ export default function Home() {
               Why Choose Us?
             </h2>
           </motion.div>
-          <div className="mt-20 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -210,10 +219,10 @@ export default function Home() {
       </div>
 
       {/* Testimonials Section */}
-      <div className="bg-gray-50 py-24 relative overflow-hidden">
+      <div className="bg-gray-50 py-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-100 via-transparent to-transparent opacity-60" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -321,48 +330,48 @@ const testimonials = [
     content: 'We have been sourcing velvet fabrics from Shree Vinayak for over 3 years. The quality is consistently excellent and their rates are very competitive. Highly recommend for bulk orders.',
     author: 'Rajesh Kumar',
     title: 'Owner, Kumar Furnishings',
-    location: 'Mumbai, Maharashtra',
+    location: 'Chembur, Mumbai',
   },
   {
-    content: 'Best wholesale supplier in Surat! The Full Dull and Velboa collection is always in demand at our store. Quick delivery and professional service. Very satisfied with their business approach.',
+    content: 'Best wholesale supplier in Mumbai! The Full Dull and Velboa collection is always in demand at our store. Quick delivery and professional service. Very satisfied with their business approach.',
     author: 'Priya Sharma',
     title: 'Proprietor, Sharma Textiles',
-    location: 'Surat, Gujarat',
+    location: 'Dadar, Mumbai',
   },
   {
     content: 'Their festive collection is outstanding. We ordered Santa cloth and velvet fabrics for Christmas decorations and the quality exceeded our expectations. Will definitely order again.',
     author: 'Amit Patel',
     title: 'Event Decorator',
-    location: 'Ahmedabad, Gujarat',
+    location: 'Bandra, Mumbai',
   },
   {
     content: 'Excellent quality velvet at reasonable prices. We use their fabrics for designer suits and our customers love the rich texture and durability. Great support team as well.',
     author: 'Meera Desai',
     title: 'Fashion Designer',
-    location: 'Jaipur, Rajasthan',
+    location: 'Juhu, Mumbai',
   },
   {
     content: 'Reliable supplier with consistent quality. Their supersoft fabric range is perfect for our premium clothing line. Timely delivery and good communication throughout the process.',
     author: 'Sandeep Singh',
     title: 'Director, Singh Garments Pvt Ltd',
-    location: 'Delhi NCR',
+    location: 'Navi Mumbai',
   },
   {
     content: 'We have tried many suppliers but Shree Vinayak stands out for their quality and pricing. The velvet and Velboa fabrics are top-notch. Perfect for upholstery work.',
     author: 'Kavita Reddy',
     title: 'Interior Designer',
-    location: 'Bangalore, Karnataka',
+    location: 'Thane, Maharashtra',
   },
   {
     content: 'Very professional dealing and good quality materials. Their fabric collection is extensive and they always have new designs. Wholesale rates are genuinely competitive.',
     author: 'Mohammed Ansari',
     title: 'Managing Partner, Ansari Fabrics',
-    location: 'Hyderabad, Telangana',
+    location: 'Crawford Market, Mumbai',
   },
   {
     content: 'Outstanding service! We ordered velvet fabric for our boutique and received exactly what we needed. The quality is premium and the colors are vibrant. Highly recommended for retailers.',
     author: 'Anjali Gupta',
     title: 'Owner, Gupta Fashion House',
-    location: 'Pune, Maharashtra',
+    location: 'Colaba, Mumbai',
   },
 ];

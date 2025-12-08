@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 type FormData = {
   name: string;
@@ -30,22 +31,22 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
-    
+
     const form = e.currentTarget;
     const formDataToSend = new FormData(form);
-    
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formDataToSend
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         setIsSubmitting(false);
         setIsSubmitted(true);
-        
+
         setFormData({
           name: '',
           email: '',
@@ -68,6 +69,10 @@ export default function Contact() {
 
   return (
     <div className="py-12">
+      <Helmet>
+        <title>Contact Us - Shree Vinayak Fabrics</title>
+        <meta name="description" content="Visit our shop in Chembur, Mumbai or contact us for wholesale fabric inquiries. Get a quote today." />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
@@ -115,7 +120,7 @@ export default function Contact() {
                   Friday: 10:00 AM - 7:00 PM<br />
                   Saturday: 10:00 AM - 7:00 PM<br />
                   Sunday: Closed
-                  
+
                 </p>
               </div>
             </div>
@@ -126,7 +131,7 @@ export default function Contact() {
             <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-gray-900 mb-4 sm:mb-6">
               Send us a Message
             </h2>
-            
+
             {isSubmitted ? (
               <div className="bg-green-50 border border-green-200 rounded-md p-6 text-center flex-grow flex flex-col justify-center">
                 <div className="flex items-center justify-center mb-4">
@@ -151,7 +156,7 @@ export default function Contact() {
                     <p className="text-red-600 text-sm sm:text-base">{error}</p>
                   </div>
                 )}
-                
+
                 <div>
                   <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1.5 sm:mb-2">
                     Name
@@ -207,9 +212,8 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`mt-auto text-white px-6 py-2.5 sm:px-8 sm:py-3 text-base sm:text-lg rounded-lg transition-colors w-full font-semibold ${
-                    isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-500 hover:bg-primary-600'
-                  }`}
+                  className={`mt-auto text-white px-6 py-2.5 sm:px-8 sm:py-3 text-base sm:text-lg rounded-lg transition-colors w-full font-semibold ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-500 hover:bg-primary-600'
+                    }`}
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -221,13 +225,13 @@ export default function Contact() {
         {/* Google Maps Embed - Centered Below */}
         <div className="max-w-4xl mx-auto">
           <div className="rounded-lg overflow-hidden shadow-md border border-gray-200">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.3702211148097!2d72.887198!3d19.0474534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9436937996b%3A0xe666f0441a04e85b!2sShree%20Vinayak%20Velvet%20and%20Fancy%20Fabrics!5e0!3m2!1sen!2sin!4v1745002205469!5m2!1sen!2sin" 
-              width="100%" 
-              height="400px" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.3702211148097!2d72.887198!3d19.0474534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9436937996b%3A0xe666f0441a04e85b!2sShree%20Vinayak%20Velvet%20and%20Fancy%20Fabrics!5e0!3m2!1sen!2sin!4v1745002205469!5m2!1sen!2sin"
+              width="100%"
+              height="400px"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Shree Vinayak Location"
               className="w-full h-64 sm:h-80 md:h-96 lg:h-[400px]"

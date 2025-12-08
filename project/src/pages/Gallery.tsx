@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 // Velvet Images
 const velvetImages = [
@@ -119,11 +120,15 @@ const categories = ['All', 'Velvet', 'Velboa', 'Full Dull', 'Supersoft', 'Festiv
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const filteredImages = selectedCategory === 'All' 
-    ? galleryImages 
+  const filteredImages = selectedCategory === 'All'
+    ? galleryImages
     : galleryImages.filter(img => img.category === selectedCategory);
   return (
     <div className="py-8 sm:py-12">
+      <Helmet>
+        <title>Fabric Gallery - Shree Vinayak</title>
+        <meta name="description" content="View our latest fabric collections, shop images, and customer creations." />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mb-3 sm:mb-4">
@@ -144,11 +149,10 @@ export default function Gallery() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-200 ${
-                  selectedCategory === category
-                    ? 'bg-primary-600 text-white shadow-lg transform scale-105'
-                    : 'bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-md'
-                }`}
+                className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition-all duration-200 ${selectedCategory === category
+                  ? 'bg-primary-600 text-white shadow-lg transform scale-105'
+                  : 'bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-md'
+                  }`}
               >
                 {category}
               </button>
@@ -196,7 +200,7 @@ export default function Gallery() {
             Need More Information?
           </h2>
           <p className="text-center text-gray-700 mb-6 max-w-2xl mx-auto">
-            Browse through our collection and contact us for detailed fabric specifications, 
+            Browse through our collection and contact us for detailed fabric specifications,
             pricing, and bulk order inquiries. All fabrics are available for wholesale purchase.
           </p>
           <div className="flex justify-center gap-4">

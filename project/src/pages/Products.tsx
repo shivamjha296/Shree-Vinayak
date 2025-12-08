@@ -12,54 +12,55 @@ const fabricTypes: FabricType[] = [
   {
     id: 'velvet',
     name: 'Premium Velvet',
-    description: 'Luxurious velvet fabric with deep, rich colors and superior quality. Features both plain and textured options, perfect for upholstery and high-end fashion.',
+    description: 'Our flagship 9000 Micro Velvet is the gold standard for heavy bridal lehengas, sherwanis, and luxury sofas. Known for its dense pile, rich sheen, and superior durability.',
     image: '/images/luxuryvelvet.png',
-    uses: ['Upholstery', 'Fashion Garments', 'Home Decor', 'Drapery'],
-    colors: ['Royal Blue', 'Deep Red', 'Emerald Green', 'Gold', 'Purple', 'Black', 'Silver']
+    uses: ['Bridal Lehengas', 'Designer Sherwanis', 'Luxury Sofa Upholstery', 'Jewelry Display Boxes', 'Blouse Pieces'],
+    colors: ['Royal Blue', 'Deep Maroon', 'Popat Green', 'Rani Pink', 'Antique Gold']
   },
   {
     id: 'Velboa',
     name: 'Velboa Collection',
-    description: 'Signature Velboa fabric blends the luxurious feel of velvet with enhanced durability. Perfect for commercial and residential applications.',
+    description: 'A versatile, short-pile faux fur fabric that is incredibly soft yet durable. Widely used for soft toys, pet beds, and costume making. Available in wholesale quantities in Chembur.',
     image: '/images/velboacollection.png',
-    uses: ['Commercial Furniture', 'Residential Upholstery', 'Cushions', 'Wall Panels'],
-    colors: ['Midnight Blue', 'Burgundy', 'Forest Green', 'Champagne', 'Charcoal']
+    uses: ['Soft Toys & Teddies', 'Pet Beds & Cushions', 'Theatre Costumes', 'Car Seat Covers', 'Jewelry Trays'],
+    colors: ['Leopard Print', 'Tiger Print', 'Solid Brown', 'Cream', 'Charcoal Grey']
   },
   {
     id: 'Full Dull',
     name: 'Full Dull Series',
-    description: 'Premium Full Dull fabric with a distinctive sheen and sophisticated texture. Ideal for creating elegant interiors and luxurious fashion pieces.',
+    description: 'Premium quality Full Dull fabric with a matte finish and elegant drape. Perfect for abayas, modest wear, and high-end curtains. We stock the best quality imported Nida fabric in Mumbai.',
     image: '/images/fulldullseries.png',
-    uses: ['Luxury Furniture', 'High-end Fashion', 'Interior Decoration', 'Boutique Items'],
-    colors: ['Pearl White', 'Rose Gold', 'Sapphire Blue', 'Bronze', 'Platinum']
+    uses: ['Designer Abayas', 'Burqas & Kaftans', 'Modest Wear', 'Premium Curtains', 'Event Draping'],
+    colors: ['Jet Black', 'Navy Blue', 'Dusty Pink', 'Olive Green', 'Champagne Beige']
   },
   {
     id: 'supersoft',
     name: 'Supersoft Fabrics',
-    description: 'Ultra-comfortable Supersoft fabric that combines luxury with practicality. Perfect for clothing and soft furnishings.',
+    description: 'Ultra-plush Supersoft fabric (Minky), ideal for baby blankets, hoodies, and winter wear. Gentle on skin and retains softness after multiple washes.',
     image: '/images/super-soft-fabric.jpg',
-    uses: ['Casual Wear', 'Bedding', 'Soft Furnishings', 'Children\'s Clothing'],
-    colors: ['Sky Blue', 'Soft Pink', 'Mint Green', 'Lavender', 'Beige']
+    uses: ['Baby Blankets', 'Winter Hoodies', 'Bathrobes', 'Cushion Covers', 'Soft Toys'],
+    colors: ['Sky Blue', 'Baby Pink', 'Mint Green', 'Lilac Purple', 'Pure White', 'Butter Yellow', 'Peach']
   },
   {
     id: 'santa',
     name: 'Xmas Santa Collection',
-    description: 'Specialized fabric perfect for festive seasons. Features rich textures and colors ideal for Christmas decorations & costumes.',
+    description: 'Specialty fabrics for festivals. From bright red Santa Claus costume fabric to shimmering materials for Ganpati decoration and wedding mandaps.',
     image: '/images/festivecollection.png',
-    uses: ['Santa Costumes', 'Christmas Decorations', 'Festive Accessories', 'Holiday Display'],
-    colors: ['Classic Red', 'Snow White', 'Forest Green', 'Gold Trim']
+    uses: ['Santa Claus Costumes', 'Ganpati Pandal Decoration', 'Wedding Mandap Decor', 'Backdrop Cloth', 'Crafts'],
+    colors: ['Christmas Red', 'Bright Orange', 'Marigold Yellow', 'Metallic Silver', 'Metallic Gold']
   },
   {
     id: 'designer',
     name: 'Designer Prints',
-    description: 'Custom-designed printed fabrics on premium base materials. Available in various patterns and color combinations.',
+    description: 'Exclusive digital prints on high-quality velvet. Perfect for statement furniture pieces, designer jackets, and home decor. Custom prints available for bulk orders.',
     image: '/images/designerprints.jpeg',
-    uses: ['Fashion Collections', 'Home Décor', 'Custom Projects', 'Seasonal Collections'],
-    colors: ['Custom Patterns', 'Seasonal Designs', 'Bespoke Prints']
+    uses: ['Accent Chairs', 'Designer Jackets', 'Tote Bags', 'Wall Art Panels', 'Home Decor'],
+    colors: ['Floral Prints', 'Abstract Art', 'Geometric Patterns', 'Traditional Motifs', 'Paisley']
   }
 ];
 
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 type InquiryFormData = {
   company_name: string;
@@ -102,22 +103,22 @@ export default function Products() {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
-    
+
     const form = e.currentTarget;
     const formDataToSend = new FormData(form);
-    
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formDataToSend
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         setIsSubmitting(false);
         setIsSubmitted(true);
-        
+
         setFormData({
           company_name: '',
           email: '',
@@ -142,6 +143,10 @@ export default function Products() {
 
   return (
     <div className="py-12">
+      <Helmet>
+        <title>Wholesale Fabric Collection - Shree Vinayak</title>
+        <meta name="description" content="Explore our exclusive collection of 9000 Micro Velvet, Velboa, Full Dull, and festive fabrics. Available in all colors for bulk orders." />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
@@ -158,7 +163,7 @@ export default function Products() {
           {fabricTypes.map((fabric) => (
             <div
               key={fabric.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full"
             >
               <div className="relative">
                 <img
@@ -168,7 +173,7 @@ export default function Products() {
                   className="w-full h-48 sm:h-56 md:h-64 object-cover"
                 />
               </div>
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-6 flex flex-col flex-grow">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{fabric.name}</h3>
                 <p className="text-sm sm:text-base text-gray-600 mb-4 text-justify">{fabric.description}</p>
                 <div className="mb-4">
@@ -181,7 +186,7 @@ export default function Products() {
                     ))}
                   </div>
                 </div>
-                <div className="mb-4">
+                <div className="mb-6 flex-grow">
                   <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-2">Common Uses:</h4>
                   <ul className="list-disc list-inside text-sm sm:text-base text-gray-600">
                     {fabric.uses.map((use) => (
@@ -191,7 +196,7 @@ export default function Products() {
                 </div>
                 <button
                   onClick={scrollToForm}
-                  className="bg-primary-500 text-white px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-lg hover:bg-primary-600 transition-colors w-full"
+                  className="bg-primary-500 text-white px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-lg hover:bg-primary-600 transition-colors w-full mt-auto"
                 >
                   Get Quote
                 </button>
@@ -205,7 +210,7 @@ export default function Products() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4 sm:mb-6 text-center">
             Wholesale Inquiry Form
           </h2>
-          
+
           {isSubmitted ? (
             <div className="bg-green-50 border border-green-200 rounded-md p-8 text-center">
               <div className="flex items-center justify-center mb-6">
@@ -230,7 +235,7 @@ export default function Products() {
                   <p className="text-red-600">{error}</p>
                 </div>
               )}
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1.5 sm:mb-2">
@@ -318,12 +323,11 @@ export default function Products() {
                   ></textarea>
                 </div>
                 <div className="md:col-span-2">
-                  <button 
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg rounded-lg transition-colors w-full font-semibold shadow-lg ${
-                      isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-500 hover:bg-primary-600'
-                    }`}
+                    className={`text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg rounded-lg transition-colors w-full font-semibold shadow-lg ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-500 hover:bg-primary-600'
+                      }`}
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit Wholesale Inquiry'}
                   </button>
