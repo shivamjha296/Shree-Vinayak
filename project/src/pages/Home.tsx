@@ -11,13 +11,13 @@ const fadeIn = {
 };
 
 const carouselImages = [
-  '/images/carousel-home/1.jpg',
-  '/images/carousel-home/2.jpg',
-  '/images/carousel-home/3.jpg',
-  '/images/carousel-home/4.jpg',
-  '/images/carousel-home/5.jpg',
-  '/images/carousel-home/6.jpg',
-  '/images/carousel-home/7.jpeg'
+  '/images/carousel-home/1.webp',
+  '/images/carousel-home/2.webp',
+  '/images/carousel-home/3.webp',
+  '/images/carousel-home/4.webp',
+  '/images/carousel-home/5.webp',
+  '/images/carousel-home/6.webp',
+  '/images/carousel-home/7.webp'
 ];
 
 export default function Home() {
@@ -93,6 +93,8 @@ export default function Home() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.6, ease: 'easeInOut' }}
                   className="absolute inset-0 w-full h-full object-cover"
+                  // Eager load the first image, lazy load the rest (though they are preloaded by the array, browser caching handles it)
+                  loading={currentImageIndex === 0 ? "eager" : "lazy"}
                 />
               </AnimatePresence>
 
@@ -160,6 +162,9 @@ export default function Home() {
                   <img
                     src={category.image}
                     alt={category.name}
+                    loading="lazy"
+                    width="400"
+                    height="320"
                     className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
@@ -278,32 +283,32 @@ const fabricCategories = [
   {
     name: 'Luxury Velvet',
     description: 'Premium velvet fabrics in rich, vibrant colors perfect for upholstery and fashion',
-    image: '/images/luxuryvelvet.png'
+    image: '/images/luxuryvelvet.webp'
   },
   {
     name: 'Velboa Collection',
     description: 'Soft and durable Velboa fabrics ideal for home décor and garments',
-    image: '/images/velboacollection.png'
+    image: '/images/velboacollection.webp'
   },
   {
     name: 'Full Dull Series',
     description: 'High-quality Full Dull fabrics with elegant sheen and texture',
-    image: '/images/fulldullseries.png'
+    image: '/images/fulldullseries.webp'
   },
   {
     name: 'Supersoft Fabrics',
     description: 'Ultra-comfortable supersoft materials for premium clothing',
-    image: '/images/super-soft-fabric.jpg'
+    image: '/images/super-soft-fabric.webp'
   },
   {
     name: 'Festive Collection',
     description: 'Special fabrics including Xmas Santa cloth and seasonal materials',
-    image: '/images/festivecollection.png'
+    image: '/images/festivecollection.webp'
   },
   {
     name: 'Designer Prints',
     description: 'Exclusive printed fabrics for unique fashion statements',
-    image: '/images/designerprints.jpeg'
+    image: '/images/designerprints.webp'
   }
 ];
 

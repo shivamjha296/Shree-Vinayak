@@ -231,7 +231,6 @@ export default function Contact() {
               height="400px"
               style={{ border: 0 }}
               allowFullScreen
-              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Shree Vinayak Location"
               className="w-full h-64 sm:h-80 md:h-96 lg:h-[400px]"
